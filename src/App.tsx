@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Documents} from "./Documents";
 import {RestFileUpload} from "./fileUpload";
 import {RestPostsRetriever} from "./postsRetriever";
@@ -12,7 +12,6 @@ const GeneralWrapper = styled.div`
 `
 
 const App: React.FC = () => {
-
     return <GeneralWrapper>
         <Documents fileUpload={RestFileUpload} postsRetriever={RestPostsRetriever}/>
     </GeneralWrapper>

@@ -68,7 +68,7 @@ export const Documents: FC<Props> = ({fileUpload, postsRetriever}) => {
                 type="file"
                 onChange={onFileChange}
             />
-            <Button onClick={onFileUpload}/>
+            <Button variant={'contained'} onClick={onFileUpload}>Upload</Button>
             {successFeedback &&
                 <Snackbar open={true} autoHideDuration={2000} onClose={() => setSuccessFeedback(false)}
                           data-testid={'snackbar'}>
