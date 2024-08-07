@@ -42,7 +42,7 @@ export const Upload: FC<Props> = ({fileUpload, postsRetriever}) => {
         setFile(event.target.files[0]);
     };
 
-    const onUploadCompleted = (location: string) => {
+    const onUploadCompleted = () => {
         setSuccessFeedback(true);
         fetchPosts();
     };
@@ -57,14 +57,14 @@ export const Upload: FC<Props> = ({fileUpload, postsRetriever}) => {
         }
     };
 
-    return <Wrapper>
+    return <Wrapper data-testid={'uploadWrapper'}>
         {errorFeedback && <span>{'There was an error uploading the image'}</span>}
         <HorizontalWrapper>
             <input
                 type="file"
                 onChange={onFileChange}
             />
-            <Button variant={'contained'} onClick={onFileUpload}>Upload</Button>
+            <Button variant={'contained'} onClick={onFileUpload} data-testid={'upload-button'}>Upload</Button>
             {successFeedback &&
                 <Snackbar open={true} autoHideDuration={2000} onClose={() => setSuccessFeedback(false)}
                           data-testid={'snackbar'}>
@@ -79,6 +79,7 @@ export const Upload: FC<Props> = ({fileUpload, postsRetriever}) => {
                 return <img
                     src={p.imageLocation}
                     key={p.name}
+                    data-testid={`image-${p.name}`}
                     width={400}
                     height={400}
                     alt="Uploaded picture"

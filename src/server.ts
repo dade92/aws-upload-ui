@@ -17,14 +17,15 @@ const postsResponse = {
     ]
 };
 
-const retrievePostsResponse = (): Response => new Response(200, {}, postsResponse);
-const uploadResponse = (): Response => new Response(200, {}, upload);
+const retrievePostsResponse200 = (): Response => new Response(200, {}, postsResponse);
+const uploadResponse200 = (): Response => new Response(200, {}, upload);
+const uploadResponse500 = (): Response => new Response(500, {});
 
 export const server: () => Server = () =>
     createServer({
         logging: true,
         routes() {
-            this.get('/api/posts', retrievePostsResponse);
-            this.post('/api/upload', uploadResponse);
+            this.get('/api/posts', retrievePostsResponse200);
+            this.post('/api/upload', uploadResponse200);
         },
     });

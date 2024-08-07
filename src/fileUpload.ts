@@ -1,5 +1,3 @@
-import {isLocalEnv} from "./Utils";
-
 export type FileUpload = (file: File, onUploadCompleted: (location: string) => void, onUploadError: () => void) => void;
 
 interface UploadResponse {
@@ -25,11 +23,8 @@ export const RestFileUpload: FileUpload = (file: File, onUploadCompleted: (locat
     fetch(`${host}/upload`, {
         method: 'POST',
         body: formData,
-    }).then((r) =>
-        r.json() as any as UploadResponse
-    ).then(r => {
-        onUploadCompleted(r.imageLocation);
-    }).catch(() => {
-        onUploadError();
     })
+        .then((r) => r.json() as any as UploadResponse)
+        .then(r => onUploadCompleted(r.imageLocation))
+        .catch(() => onUploadError())
 }

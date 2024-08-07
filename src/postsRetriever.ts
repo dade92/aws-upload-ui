@@ -1,4 +1,3 @@
-
 export type PostsRetriever = () => Promise<Post[]>;
 
 interface PostsResponse {
