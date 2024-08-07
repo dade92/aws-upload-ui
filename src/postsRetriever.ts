@@ -1,4 +1,3 @@
-import {isLocalEnv} from "./index";
 
 export type PostsRetriever = () => Promise<Post[]>;
 
@@ -13,10 +12,10 @@ export interface Post {
 
 let host = '';
 
-if (isLocalEnv()) {
-    host = '/api';
+if (process.env.REACT_APP_STAGE === 'production') {
+    host = 'http://davidebotti.com/api'
 } else {
-    host = 'http://davidebotti.com/api';
+    host = '/api'
 }
 
 export const RestPostsRetriever: PostsRetriever = async (): Promise<Post[]> => {

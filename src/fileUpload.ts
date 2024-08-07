@@ -1,4 +1,4 @@
-import {isLocalEnv} from "./index";
+import {isLocalEnv} from "./Utils";
 
 export type FileUpload = (file: File, onUploadCompleted: (location: string) => void, onUploadError: () => void) => void;
 
@@ -8,10 +8,10 @@ interface UploadResponse {
 
 let host = '';
 
-if (isLocalEnv()) {
-    host = '/api';
+if (process.env.REACT_APP_STAGE === 'production') {
+    host = 'http://davidebotti.com/api'
 } else {
-    host = 'http://davidebotti.com/api';
+    host = '/api'
 }
 
 export const RestFileUpload: FileUpload = (file: File, onUploadCompleted: (location: string) => void, onUploadError: () => void) => {

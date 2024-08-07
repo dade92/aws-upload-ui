@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MyApp from './App';
 import {server} from "./server";
-
-export const isLocalEnv = ():boolean => process.env.REACT_APP_STAGE === 'local'
+import {isLocalEnv} from "./Utils";
 
 if (isLocalEnv()) {
     server();

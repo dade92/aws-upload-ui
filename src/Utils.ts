@@ -1,0 +1,1 @@
+export const isLocalEnv = ():boolean => process.env.REACT_APP_STAGE === 'local'
