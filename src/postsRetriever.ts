@@ -1,3 +1,5 @@
+import {isLocalEnv} from "./index";
+
 export type PostsRetriever = () => Promise<Post[]>;
 
 interface PostsResponse {
@@ -9,8 +11,16 @@ export interface Post {
     imageLocation: string;
 }
 
+let host = '';
+
+if (isLocalEnv()) {
+    host = '/api';
+} else {
+    host = 'http://davidebotti.com/api';
+}
+
 export const RestPostsRetriever: PostsRetriever = async (): Promise<Post[]> => {
-    const response: PostsResponse = await fetch(`/posts`)
+    const response: PostsResponse = await fetch(`${host}/posts`)
         .then(r => r.json() as any as PostsResponse);
     return response.posts;
 }

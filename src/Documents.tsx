@@ -26,7 +26,7 @@ interface Props {
     postsRetriever: PostsRetriever
 }
 
-const Documents: FC<Props> = ({fileUpload, postsRetriever}) => {
+export const Documents: FC<Props> = ({fileUpload, postsRetriever}) => {
     const [file, setFile] = useState<File | null>();
     const [successFeedback, setSuccessFeedback] = useState<boolean>();
     const [errorFeedback, setErrorFeedback] = useState<boolean>();
@@ -91,7 +91,3 @@ const Documents: FC<Props> = ({fileUpload, postsRetriever}) => {
         }
     </Wrapper>
 }
-
-const MainDocuments: FC = () => <Documents fileUpload={RestFileUpload} postsRetriever={RestPostsRetriever}/>
-
-export default MainDocuments;

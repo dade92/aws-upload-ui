@@ -1,10 +1,18 @@
+import {isLocalEnv} from "./index";
+
 export type FileUpload = (file: File, onUploadCompleted: (location: string) => void, onUploadError: () => void) => void;
 
 interface UploadResponse {
     imageLocation: string;
 }
 
-const host = process.env.NEXT_PUBLIC_UPLOAD_HOST;
+let host = '';
+
+if (isLocalEnv()) {
+    host = '/api';
+} else {
+    host = 'http://davidebotti.com/api';
+}
 
 export const RestFileUpload: FileUpload = (file: File, onUploadCompleted: (location: string) => void, onUploadError: () => void) => {
     const formData = new FormData();
