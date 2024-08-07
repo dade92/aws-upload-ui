@@ -1,5 +1,5 @@
 import React from 'react';
-import {Documents} from "./Documents";
+import {Upload} from "./Upload";
 import {RestFileUpload} from "./fileUpload";
 import {RestPostsRetriever} from "./postsRetriever";
 import styled from "styled-components";
@@ -11,10 +11,9 @@ const GeneralWrapper = styled.div`
     margin-top: 24px;
 `
 
-const App: React.FC = () => {
-    return <GeneralWrapper>
-        <Documents fileUpload={RestFileUpload} postsRetriever={RestPostsRetriever}/>
+const App: React.FC = () =>
+    <GeneralWrapper>
+        <Upload fileUpload={RestFileUpload} postsRetriever={RestPostsRetriever}/>
     </GeneralWrapper>
-}
 
 export default App;

@@ -1,8 +1,8 @@
 import React, {FC, useEffect, useState} from "react";
 import {Alert, Button, Snackbar} from "@mui/material";
 import styled from "styled-components";
-import {FileUpload, RestFileUpload} from "./fileUpload";
-import {Post, PostsRetriever, RestPostsRetriever} from "./postsRetriever";
+import {FileUpload} from "./fileUpload";
+import {Post, PostsRetriever} from "./postsRetriever";
 
 const Wrapper = styled.div`
     display: flex;
@@ -17,16 +17,12 @@ const HorizontalWrapper = styled.div`
     justify-content: space-between;
 `
 
-const ButtonWithMargin = styled(Button)`
-    margin-top: 16px;
-`
-
 interface Props {
     fileUpload: FileUpload
     postsRetriever: PostsRetriever
 }
 
-export const Documents: FC<Props> = ({fileUpload, postsRetriever}) => {
+export const Upload: FC<Props> = ({fileUpload, postsRetriever}) => {
     const [file, setFile] = useState<File | null>();
     const [successFeedback, setSuccessFeedback] = useState<boolean>();
     const [errorFeedback, setErrorFeedback] = useState<boolean>();
