@@ -2,7 +2,7 @@ import {render, screen, waitFor} from "@testing-library/react";
 import {Upload} from "./Upload";
 
 describe('Upload', () => {
-    it('should render posts correctly', () => {
+    it('should render posts correctly', async () => {
         let fileUpload = jest.fn();
         let postsRetriever = jest.fn(() => Promise.resolve(
             [{
@@ -15,8 +15,11 @@ describe('Upload', () => {
 
         let wrapper = screen.getByTestId('uploadWrapper');
 
-        waitFor(() => {
+        await waitFor(() => {
             expect(wrapper).toBeInTheDocument();
+        });
+
+        await waitFor(() => {
             expect(screen.getByTestId('image-image1')).toBeVisible();
         });
     });

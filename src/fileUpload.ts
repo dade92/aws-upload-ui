@@ -24,7 +24,13 @@ export const RestFileUpload: FileUpload = (file: File, onUploadCompleted: (locat
         method: 'POST',
         body: formData,
     })
-        .then((r) => r.json() as any as UploadResponse)
-        .then(r => onUploadCompleted(r.imageLocation))
+        .then((r) => {
+            if(r.status === 200) {
+                const result = r.json() as any as UploadResponse;
+                onUploadCompleted(result.imageLocation)
+            } else {
+                onUploadError();
+            }
+        })
         .catch(() => onUploadError())
 }

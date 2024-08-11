@@ -58,7 +58,7 @@ export const Upload: FC<Props> = ({fileUpload, postsRetriever}) => {
     };
 
     return <Wrapper data-testid={'uploadWrapper'}>
-        {errorFeedback && <span>{'There was an error uploading the image'}</span>}
+        {errorFeedback && <Alert severity="error">There was an error uploading the image</Alert>}
         <HorizontalWrapper>
             <input
                 type="file"

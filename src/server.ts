@@ -17,9 +17,9 @@ const postsResponse = {
     ]
 };
 
-const retrievePostsResponse200 = (): Response => new Response(200, {}, postsResponse);
-const uploadResponse200 = (): Response => new Response(200, {}, upload);
-const uploadResponse500 = (): Response => new Response(500, {});
+export const retrievePostsResponse200 = (): Response => new Response(200, {}, postsResponse);
+export const uploadResponse200 = (): Response => new Response(200, {}, upload);
+export const uploadResponse500 = (): Response => new Response(500, {});
 
 export const server: () => Server = () =>
     createServer({
