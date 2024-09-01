@@ -25,6 +25,7 @@ export const server: () => Server = () =>
     createServer({
         logging: true,
         routes() {
+            this.timing = 1000
             this.get('/api/posts', retrievePostsResponse200);
             this.post('/api/upload', uploadResponse200);
         },

@@ -1,5 +1,6 @@
 import React, {FC, useEffect, useState} from "react";
-import {Alert, Button, Snackbar} from "@mui/material";
+import {Alert, Snackbar} from "@mui/material";
+import LoadingButton from '@mui/lab/LoadingButton';
 import styled from "styled-components";
 import {FileUpload} from "./fileUpload";
 import {Post, PostsRetriever} from "./postsRetriever";
@@ -27,6 +28,7 @@ export const Upload: FC<Props> = ({fileUpload, postsRetriever}) => {
     const [successFeedback, setSuccessFeedback] = useState<boolean>();
     const [errorFeedback, setErrorFeedback] = useState<boolean>();
     const [posts, setPosts] = useState<Post[]>([]);
+    const [isUploading, setIsUploading] = useState<boolean>(false);
 
     const fetchPosts = () => {
         postsRetriever()
@@ -44,6 +46,7 @@ export const Upload: FC<Props> = ({fileUpload, postsRetriever}) => {
 
     const onUploadCompleted = () => {
         setSuccessFeedback(true);
+        setIsUploading(false);
         fetchPosts();
     };
 
@@ -52,6 +55,7 @@ export const Upload: FC<Props> = ({fileUpload, postsRetriever}) => {
     }
 
     const onFileUpload = () => {
+        setIsUploading(true);
         if (file != null) {
             fileUpload(file, onUploadCompleted, onUploadError);
         }
@@ -64,7 +68,7 @@ export const Upload: FC<Props> = ({fileUpload, postsRetriever}) => {
                 type="file"
                 onChange={onFileChange}
             />
-            <Button variant={'contained'} onClick={onFileUpload} data-testid={'upload-button'}>Upload</Button>
+            <LoadingButton loading={isUploading} variant={'contained'} onClick={onFileUpload} data-testid={'upload-button'}>Upload</LoadingButton>
             {successFeedback &&
                 <Snackbar open={true} autoHideDuration={2000} onClose={() => setSuccessFeedback(false)}
                           data-testid={'snackbar'}>
