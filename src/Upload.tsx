@@ -55,8 +55,8 @@ export const Upload: FC<Props> = ({fileUpload, postsRetriever}) => {
     }
 
     const onFileUpload = () => {
-        setIsUploading(true);
         if (file != null) {
+            setIsUploading(true);
             fileUpload(file, onUploadCompleted, onUploadError);
         }
     };
