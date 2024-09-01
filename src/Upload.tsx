@@ -47,6 +47,7 @@ export const Upload: FC<Props> = ({fileUpload, postsRetriever}) => {
     const onUploadCompleted = () => {
         setSuccessFeedback(true);
         setIsUploading(false);
+        setFile(null);
         fetchPosts();
     };
 
